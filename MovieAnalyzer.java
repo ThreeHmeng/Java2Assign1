@@ -37,7 +37,6 @@ public class MovieAnalyzer {
             if (Gross==null| Gross.equals("")){
                 this.Gross = -1;
             }else {
-//                System.out.println(Gross);
                 this.Gross = Integer.parseInt(Gross.replaceAll(",",""));
             }
             this.IMDB_Rating =Double.parseDouble(IMDB_Rating);
@@ -195,10 +194,9 @@ public class MovieAnalyzer {
                 return o2.getValue().compareTo(o1.getValue());
             }
         });
-        Map<String, Integer> answer = list2.stream().
+        return list2.stream().
                 collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                         (e1, e2) -> e1, LinkedHashMap::new));
-        return answer;
     }
 
     public Map<Integer, Integer> getMovieCountByYear() {
@@ -246,9 +244,7 @@ public class MovieAnalyzer {
                 return o2.getValue() - o1.getValue();
             }
         });
-        Map<List<String>, Integer> ans =
-                list.stream().collect(LinkedHashMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
-        return ans;
+        return list.stream().collect(LinkedHashMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
     }
 
     public List<String> getTopMovies(int top_k, String by) {
@@ -354,7 +350,7 @@ public class MovieAnalyzer {
 ////        System.out.println(movieAnalyzer.getTopMovies(50,"overview"));
 ////        System.out.println(movieAnalyzer.searchMovies("Sci-Fi",8.2f,200));
 //    }
-    class Person {
+    static class Person {
         String name;
         double gross;
         double avgross;
